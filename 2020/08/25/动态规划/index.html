@@ -31,7 +31,7 @@
 <meta property="og:image" content="c:%5CUsers%5Cwang_%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822213646224.png">
 <meta property="og:image" content="c:%5CUsers%5Cwang_%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822121823692.png">
 <meta property="article:published_time" content="2020-08-24T17:04:54.028Z">
-<meta property="article:modified_time" content="2020-08-24T17:08:08.872Z">
+<meta property="article:modified_time" content="2020-08-25T17:37:37.713Z">
 <meta property="article:author" content="wang yi wang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:%5CUsers%5Cwang_%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822213611479.png">
@@ -201,10 +201,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-25 01:04:54 / 修改时间：01:08:08" itemprop="dateCreated datePublished" datetime="2020-08-25T01:04:54+08:00">2020-08-25</time>
+              <time title="创建时间：2020-08-25 01:04:54" itemprop="dateCreated datePublished" datetime="2020-08-25T01:04:54+08:00">2020-08-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-26 01:37:37" itemprop="dateModified" datetime="2020-08-26T01:37:37+08:00">2020-08-26</time>
+              </span>
 
           
 
@@ -219,10 +225,8 @@
       
         <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>主要用来求解最值。</p>
 <p>三要素：最优子结构、重叠子问题、状态转移方程</p>
-<p>具体来说，动态规划的⼀般流程就是三步：暴⼒的递归解法-&gt; 带备忘录的递归解法-&gt; 迭代的动态规划解法。<br>就思考流程来说，就分为⼀下⼏步：找到状态和选择-&gt; 明确dp 数组/函数的定义-&gt; 寻找状态之间的关系。</p>
-<p>要⽤动态规划，那就要定义dp 数组，找状态转移关系。我们说的两种思路模板，就是dp 数组的定义思路。不同的问题可能需要不同的dp 数组定<br>义来解决。</p>
-<a id="more"></a>
-
+<p>具体来说，动态规划的⼀般流程就是三步：暴⼒的递归解法-&gt; 带备忘录的<br>递归解法-&gt; 迭代的动态规划解法。<br>就思考流程来说，就分为⼀下⼏步：找到状态和选择-&gt; 明确dp 数组/函数<br>的定义-&gt; 寻找状态之间的关系。</p>
+<p>要⽤动态规划，那就要定义dp 数组，找状态转移关系。我们说的两种<br>思路模板，就是dp 数组的定义思路。不同的问题可能需要不同的dp 数组定<br>义来解决。</p>
 <p>⼀、两种思路<br>1、第⼀种思路模板是⼀个⼀维的dp 数组：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int n &#x3D; array.length;</span><br><span class="line">int[] dp &#x3D; new int[n];</span><br><span class="line">for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line">	for (int j &#x3D; 0; j &lt; i; j++) &#123;</span><br><span class="line">		dp[i] &#x3D; 最值(dp[i], dp[j] + ...)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -554,6 +558,88 @@ public int maxProfitWithInfinityChances(int[] prices) {
         dp_i_1 = Math.max(dp_i_1, tmp - prices[i] - fee); 
     }
     return dp_i_0;
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 打家劫舍</span><br><span class="line"></span><br><span class="line">### [198. 打家劫舍](https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;house-robber&#x2F;)</span><br><span class="line"></span><br><span class="line">你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</span><br><span class="line"></span><br><span class="line">给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br></pre></td></tr></table></figure>
+<p>输入：[1,2,3,1]<br>输出：4<br>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。<br>     偷窃到的最高金额 = 1 + 3 = 4 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**思路**</span><br><span class="line"></span><br><span class="line">* 状态 i: 第i间房</span><br><span class="line">* dp[i]： 抢劫到第i间房时，获得的最高金额。</span><br><span class="line">* 选择：每间房抢或者不抢。只有没有抢过前面房间时才能抢现在的房间，每间房都能选择不抢</span><br><span class="line">* 状态转移：dp[i] &#x3D; max(dp[i - 2] + num[i], dp[i - 1]);</span><br><span class="line">* base case: dp[0] &#x3D; 0; dp[1] &#x3D; num[0]</span><br><span class="line"></span><br><span class="line">**实现**</span><br></pre></td></tr></table></figure>
+<pre><code>public int rob(int[] nums) {
+    if (nums == null || nums.length &lt;= 0) {
+        return 0;
+    }
+    int[] dp = new int[nums.length + 1];
+    dp[0] = 0;
+    dp[1] = nums[0];
+    for (int i = 2; i &lt;= nums.length; i++) {
+        dp[i] = Math.max(dp[i - 2] + nums[i - 1], dp[i - 1]);
+    }
+    return dp[nums.length];
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>public int rob(int[] nums) {
+    if (nums == null || nums.length &lt;= 0) {
+        return 0;
+    }
+    int dp_cur = 0;
+    int dp_pre = 0;
+    int dp_pre_pre = 0;
+    for (int i = 0; i &lt; nums.length; i++) {
+        dp_cur = Math.max(dp_pre_pre + nums[i], dp_pre);
+        dp_pre_pre = dp_pre;
+        dp_pre = dp_cur;
+    }
+    return dp_cur;
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### [213. 打家劫舍 II](https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;house-robber-ii&#x2F;)</span><br><span class="line"></span><br><span class="line">你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都围成一圈，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</span><br><span class="line"></span><br><span class="line">给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。</span><br><span class="line"></span><br><span class="line">**思路**</span><br><span class="line"></span><br><span class="line">* ⾸先，⾸尾房间不能同时被抢，那么只可能有三种不同情况：要么都不被抢；要么第⼀间房⼦被抢最后⼀间不抢；要么最后⼀间房⼦被抢第⼀间不抢。</span><br><span class="line"></span><br><span class="line">![image-20200826011240245](C:\Users\wang_\AppData\Roaming\Typora\typora-user-images\image-20200826011240245.png)</span><br><span class="line"></span><br><span class="line">那就简单了啊，这三种情况，那种的结果最⼤，就是最终答案呗！不过，其实我们不需要⽐较三种情况，只要⽐较情况⼆和情况三就⾏了，因为这两种情况对于房⼦的选择余地⽐情况⼀⼤呀，房⼦⾥的钱数都是⾮负数，所以选择余地⼤，最优决策结果肯定不会⼩。所以只需对之前的解法稍作修改即可：</span><br><span class="line"></span><br><span class="line">**实现**</span><br></pre></td></tr></table></figure>
+<pre><code>public int rob(int[] nums) {
+    int len;
+    if (nums == null || (len = nums.length) &lt;= 0) {
+        return 0;
+    }
+    return Math.max(robRange(nums, 0, len - 2), robRange(nums, 1, len - 1));
+}
+
+private int robRange(int[] nums, int start, int end) {
+    if (nums.length == 1) {
+        return nums[0];
+    }
+    if (nums.length == 2) {
+        return Math.max(nums[0], nums[1]);
+    }
+    int dp_cur = 0;
+    int dp_pre = 0;
+    int dp_pre_pre = 0;
+
+    for (int i = start; i &lt;= end; i++) {
+        dp_cur = Math.max(dp_pre_pre + nums[i], dp_pre);
+        dp_pre_pre = dp_pre;
+        dp_pre = dp_cur;
+    }
+    return dp_cur;
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### [337. 打家劫舍 III](https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;house-robber-iii&#x2F;)</span><br><span class="line"></span><br><span class="line">在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。</span><br><span class="line"></span><br><span class="line">计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br></pre></td></tr></table></figure>
+<p>输入: [3,2,3,null,3,null,1]</p>
+<pre><code> 3
+/ \</code></pre><p>   2   3<br>    \   \<br>     3   1</p>
+<p>输出: 7<br>解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**思路**</span><br><span class="line"></span><br><span class="line">* 还是分为抢还是不抢</span><br><span class="line">* 中序遍历</span><br><span class="line"></span><br><span class="line">**实现**</span><br></pre></td></tr></table></figure>
+<pre><code>public class TreeNode {
+   int val;
+   TreeNode left;
+   TreeNode right;
+   TreeNode(int x) { val = x; }
+}
+private Map&lt;TreeNode, Integer&gt; memo = new HashMap&lt;&gt;();
+public int rob(TreeNode root) {
+    if (root == null) {
+        return 0;
+    }
+    if (memo.containsKey(root)) {
+        return memo.get(root);
+    }
+    int doRob = root.val +
+            ((root.left == null) ? 0 : rob(root.left.left) + rob(root.left.right)) +
+            ((root.right == null) ? 0 : rob(root.right.right) + rob(root.right.left));
+
+    int notRob =  rob(root.left) + rob(root.right);
+    int res = Math.max(doRob, notRob);
+    memo.put(root, res);
+    return res;
 }</code></pre><pre><code></code></pre>
     </div>
 
